@@ -2,7 +2,8 @@ import React, { Component } from "react";
 //import './App.css';
 import { Container, Grid, Image, Header } from "semantic-ui-react";
 
-const Logo = ({ src, size = "tiny", inline = true, ...props }) => (
+const Logo = ({ width = 6, src, size = "tiny", inline = true, ...props }) => (
+  <Grid.Column width={width}>
   <Image
     src={src}
     size={size}
@@ -11,6 +12,7 @@ const Logo = ({ src, size = "tiny", inline = true, ...props }) => (
     style={{ paddingBottom: ".5em" }}
     {...props}
   />
+  </Grid.Column>
 );
 
 class App extends Component {
@@ -22,11 +24,13 @@ class App extends Component {
             <Image src="images/banner.jpg" />
           </Grid.Column>
           <Grid.Column>
-            <Logo src="images/logo.png" size="small" inline={false} />
+            <Grid columns="equal" centered>
+            <Logo src="images/logo.png" size="small" width={12} />
             <Logo src="images/logotipo labjor tif-600.png" />
             <Logo src="images/novoLogoNudecri.jpg" />
             <Logo src="images/UNICAMP_logo.svg.png" />
             <Logo src="images/unirtv.png" />
+            </Grid>
           </Grid.Column>
         </Grid>
         <Grid columns="equal">
@@ -49,6 +53,11 @@ class App extends Component {
           </Grid.Column>
           <Grid.Column>
             <Image src="images/qr-code.png" />
+          </Grid.Column>
+        </Grid>
+        <Grid columns="equal">
+          <Grid.Column>
+          
           </Grid.Column>
         </Grid>
       </Container>
