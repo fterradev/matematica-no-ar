@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import './App.css';
-import { Container, Grid, Image, Header } from "semantic-ui-react";
+import { Container, Grid, Image, Header, Card } from "semantic-ui-react";
+import Spot from "./Spot";
 
 const Logo = ({ width = 6, src, size = "tiny", inline = true, ...props }) => (
   <Grid.Column width={width}>
@@ -16,6 +17,47 @@ const Logo = ({ width = 6, src, size = "tiny", inline = true, ...props }) => (
 );
 
 class App extends Component {
+  spots = [
+    {
+      title: 'O sinal de igual sempre existiu?',
+      image: 'Spot - Sinal de igual.jpg',
+      audio: 'Spot-Igual-a-completo-vinheta-2.mp3'
+    },
+    {
+      title: 'De onde vem o zero?',
+      image: 'Spot - Zero.jpg',
+      audio: 'Spot-Zero-completo-vinheta-2.mp3'
+    },
+    {
+      title: 'Jacob Palis, um grande matemático brasileiro',
+      image: 'Spot - Jacob Palis.jpg',
+      audio: 'Spot-Jacob-Palis-completo-vinheta-2-1.mp3'
+    },
+    {
+      title: 'Qual a Lógica disso?',
+      image: 'Spot - Lógica.jpg',
+      audio: 'Spot-Lógica-completo-vinheta-2.mp3'
+    },
+    {
+      title: 'Loteria, haja fé!',
+      image: 'Spot - Loteria.jpg',
+      audio: 'Spot-Loteria-completo-vinheta-2.mp3'
+    },
+    {
+      title: 'A revolta…',
+      image: 'Spot - Revolta do Quebra-Quilos.jpg',
+      audio: 'Spot-Quebra-quilos-completo-vinheta-2.mp3'
+    }
+  ];
+
+  onPlayAny = (current) => {
+    this.spots.forEach(spot => {
+      if (spot !== current) {
+        spot.stop()
+      }
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -55,11 +97,18 @@ class App extends Component {
             <Image src="images/qr-code.png" />
           </Grid.Column>
         </Grid>
-        <Grid columns="equal">
-          <Grid.Column>
-          
-          </Grid.Column>
-        </Grid>
+        <Card.Group>
+          {this.spots.map( spot => (
+            <Spot
+              key={spot.title}
+              title={spot.title}
+              image={spot.image}
+              audio={spot.audio}
+              exportStop={(stop) => spot.stop = stop}
+              onPlay={() => this.onPlayAny(spot)}
+            />
+          ))}
+        </Card.Group>
       </Container>
     );
   }
