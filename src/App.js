@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import './App.css';
-import { Container, Grid, Image, Header, Card } from "semantic-ui-react";
+import { Container, Grid, Image, Header, Card, Segment } from "semantic-ui-react";
 import Spot from "./Spot";
 
 const Logo = ({ width = 6, src, size = "tiny", inline = true, ...props }) => (
@@ -109,6 +109,9 @@ class App extends Component {
             />
           ))}
         </Card.Group>
+        <Segment>
+          Saiba mais sobre o projeto em <a href="http://oxigenio.comciencia.br" target="oxigenio">oxigenio.comciencia.br</a>
+        </Segment>
       </Container>
     );
   }
