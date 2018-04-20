@@ -1,16 +1,29 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 //import './App.css';
-import { Container, Grid, Image, Header, Card, Segment } from "semantic-ui-react";
-import Spot from "./Spot";
+import {
+  Container,
+  Grid,
+  Image,
+  Header,
+  Card,
+  Segment
+} from 'semantic-ui-react';
+import Spot from './Spot';
 
-const Logo = ({ src, size = "tiny", inline = true, containerStyle = null, ...props }) => (
-  <div style={{textAlign: 'center', ...containerStyle}}>
+const Logo = ({
+  src,
+  size = 'tiny',
+  inline = true,
+  containerStyle = null,
+  ...props
+}) => (
+  <div style={{ textAlign: 'center', ...containerStyle }}>
     <Image
       src={src}
       size={size}
       inline={inline}
       spaced={inline}
-      style={{ paddingBottom: ".5em" }}
+      style={{ paddingBottom: '.5em' }}
       {...props}
     />
   </div>
@@ -50,13 +63,13 @@ class App extends Component {
     }
   ];
 
-  onPlayAny = (current) => {
+  onPlayAny = current => {
     this.spots.forEach(spot => {
       if (spot !== current) {
-        spot.stop()
+        spot.stop();
       }
     });
-  }
+  };
 
   render() {
     return (
@@ -65,16 +78,22 @@ class App extends Component {
           <Grid.Column width={12}>
             <Image src="images/banner.jpg" />
           </Grid.Column>
-          <Grid.Column style={{
+          <Grid.Column
+            style={{
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center'
-            }}>
-              <Logo src="images/logo.png" size="small" containerStyle={{width: '100%'}} />
-              <Logo src="images/logotipo labjor tif-600.png" />
-              <Logo src="images/novoLogoNudecri.jpg" />
-              <Logo src="images/UNICAMP_logo.svg.png" />
-              <Logo src="images/unirtv.png" />
+            }}
+          >
+            <Logo
+              src="images/logo.png"
+              size="small"
+              containerStyle={{ width: '100%' }}
+            />
+            <Logo src="images/logotipo labjor tif-600.png" />
+            <Logo src="images/novoLogoNudecri.jpg" />
+            <Logo src="images/UNICAMP_logo.svg.png" />
+            <Logo src="images/unirtv.png" />
           </Grid.Column>
         </Grid>
         <Grid columns="equal">
@@ -100,19 +119,22 @@ class App extends Component {
           </Grid.Column>
         </Grid>
         <Card.Group>
-          {this.spots.map( spot => (
+          {this.spots.map(spot => (
             <Spot
               key={spot.title}
               title={spot.title}
               image={spot.image}
               audio={spot.audio}
-              exportStop={(stop) => spot.stop = stop}
+              exportStop={stop => (spot.stop = stop)}
               onPlay={() => this.onPlayAny(spot)}
             />
           ))}
         </Card.Group>
         <Segment>
-          Saiba mais sobre o projeto em <a href="http://oxigenio.comciencia.br" target="oxigenio">oxigenio.comciencia.br</a>
+          Saiba mais sobre o projeto em{' '}
+          <a href="http://oxigenio.comciencia.br" target="oxigenio">
+            oxigenio.comciencia.br
+          </a>
         </Segment>
       </Container>
     );

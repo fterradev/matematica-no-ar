@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Icon } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Button, Icon } from 'semantic-ui-react';
 
 class Player extends Component {
   state = {
@@ -52,8 +52,8 @@ class Player extends Component {
           labelPosition="left"
           onClick={() => (isPlaying ? this.stop() : this.play())}
         >
-          <Icon name={isPlaying ? "stop" : "play"} />
-          {isPlaying ? "Stop" : "Play"}
+          <Icon name={isPlaying ? 'stop' : 'play'} />
+          {isPlaying ? 'Stop' : 'Play'}
         </Button>
       </div>
     );
