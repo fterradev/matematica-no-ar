@@ -3,17 +3,17 @@ import React, { Component } from "react";
 import { Container, Grid, Image, Header, Card, Segment } from "semantic-ui-react";
 import Spot from "./Spot";
 
-const Logo = ({ width = 6, src, size = "tiny", inline = true, ...props }) => (
-  <Grid.Column width={width}>
-  <Image
-    src={src}
-    size={size}
-    inline={inline}
-    spaced={inline}
-    style={{ paddingBottom: ".5em" }}
-    {...props}
-  />
-  </Grid.Column>
+const Logo = ({ src, size = "tiny", inline = true, containerStyle = null, ...props }) => (
+  <div style={{textAlign: 'center', ...containerStyle}}>
+    <Image
+      src={src}
+      size={size}
+      inline={inline}
+      spaced={inline}
+      style={{ paddingBottom: ".5em" }}
+      {...props}
+    />
+  </div>
 );
 
 class App extends Component {
@@ -65,14 +65,16 @@ class App extends Component {
           <Grid.Column width={12}>
             <Image src="images/banner.jpg" />
           </Grid.Column>
-          <Grid.Column>
-            <Grid columns="equal" centered>
-            <Logo src="images/logo.png" size="small" width={12} />
-            <Logo src="images/logotipo labjor tif-600.png" />
-            <Logo src="images/novoLogoNudecri.jpg" />
-            <Logo src="images/UNICAMP_logo.svg.png" />
-            <Logo src="images/unirtv.png" />
-            </Grid>
+          <Grid.Column style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center'
+            }}>
+              <Logo src="images/logo.png" size="small" containerStyle={{width: '100%'}} />
+              <Logo src="images/logotipo labjor tif-600.png" />
+              <Logo src="images/novoLogoNudecri.jpg" />
+              <Logo src="images/UNICAMP_logo.svg.png" />
+              <Logo src="images/unirtv.png" />
           </Grid.Column>
         </Grid>
         <Grid columns="equal">
