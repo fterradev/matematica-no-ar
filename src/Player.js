@@ -3,7 +3,8 @@ import { Button, Icon } from 'semantic-ui-react';
 
 class Player extends Component {
   state = {
-    isPlaying: false
+    isPlaying: false,
+    duration: 0
   };
 
   stop = () => {
@@ -31,9 +32,19 @@ class Player extends Component {
     }
   }
 
+  leftZero(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  formatTime(minutes, seconds) {
+    return `${this.leftZero(minutes)}:${this.leftZero(seconds)}`;
+  }
+
   render() {
-    const { isPlaying } = this.state;
+    const { isPlaying, duration } = this.state;
     const { src } = this.props;
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.trunc(duration) - minutes * 60;
     return (
       <div>
         <audio
@@ -41,6 +52,11 @@ class Player extends Component {
           onEnded={() =>
             this.setState({
               isPlaying: false
+            })
+          }
+          onLoadedMetadata={() =>
+            this.setState({
+              duration: this.audioRef.duration
             })
           }
         >
@@ -54,7 +70,8 @@ class Player extends Component {
         >
           <Icon name={isPlaying ? 'stop' : 'play'} />
           {isPlaying ? 'Stop' : 'Play'}
-        </Button>
+        </Button>{' '}
+        Duração: {this.formatTime(minutes, seconds)}
       </div>
     );
   }
