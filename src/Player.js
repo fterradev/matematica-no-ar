@@ -7,10 +7,13 @@ class Player extends Component {
   };
 
   stop = () => {
-    this.audioRef.load();
-    this.setState({
-      isPlaying: false
-    });
+    if (this.state.isPlaying) {
+      this.audioRef.pause();
+      this.audioRef.currentTime = 0;
+      this.setState({
+        isPlaying: false
+      });
+    }
   };
 
   play = () => {
