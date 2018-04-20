@@ -4,12 +4,12 @@ import Player from './Player';
 
 class Spot extends Component {
   state = {
-    properties: {}
+    playerProperties: {}
   };
 
-  exportProperties = properties => {
+  exportPlayerProperties = playerProperties => {
     this.setState({
-      properties
+      playerProperties
     });
   };
 
@@ -24,7 +24,7 @@ class Spot extends Component {
   render() {
     const { image, title, audio, exportStop, onPlay } = this.props;
     const {
-      properties: { duration }
+      playerProperties: { duration }
     } = this.state;
     const minutes = Math.floor(duration / 60);
     const seconds = Math.trunc(duration) - minutes * 60;
@@ -40,7 +40,7 @@ class Spot extends Component {
             <Player
               src={`audio/${audio}`}
               exportStop={exportStop}
-              exportProperties={this.exportProperties}
+              exportProperties={this.exportPlayerProperties}
               onPlay={onPlay}
             />
           </Card.Description>
